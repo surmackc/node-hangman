@@ -1,35 +1,51 @@
-var prompt = require('prompt');
 var inquirer = require('inquirer');
-let Word = require('./word.js');
-let Letter = require('./letter.js')
+const Word = require('./word.js');
+const Letter = require('./letter.js')
 
+let currentWord;
+var guessedLetters;
+var guesses;
 
-var game = {
-  guessed: [],
-  left: 10,
-  
+function startGame() {
+	guesses = 10;
+	currentWord = new Word(this.word);
+	takeInput();
 }
 
 
+function takeInput() {
 
-  
+            inquirer.prompt([
+              {
+              type: "input",
+              name: "letter",
+              message: "Guess a letter!"
+              }, 
+            ])
+          
+          .then(function (response) {
+          let guess = response.letter.trim();
 
-var newWord = new Word();
-var newLetter = new Letter();
+          if (!currentWord.checkGuess(guess)) {
+          		guesses--;
+          		console.log("Wrong!  You have " + guesses + " left.")
+          }
 
-console.log(newWord.word);
-newWord.logWord();
-newLetter.getLetter();
+          if (currentWord.complete || guesses <= 0) {
+          		currentWord.showWord();
+          } else if (currentWord.complete && guesses >0){
+          	console.log("You win!");
+          } else {
+          	takeInput();
+          }
 
-  	
-// function newLetter(){
-//   var newLetter = String.fromCharCode(event.keyCode).toLowerCase();
-//   console.log(newLetter);
-// };
+		});
+};
 
-// newLetter();
+startGame();
+logWord();
 
-// guess
+
 
 
 

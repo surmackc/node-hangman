@@ -1,30 +1,24 @@
 
 const Letter = require('./letter.js');
 module.exports = function Word () {
-		
-		this.complete = false;
 
-		this.wordArray = [];
+		this.complete = false;
 		
 		this.words = ['Hemingway', 'Fitzgerald', 'Steinbeck', 'Kerouac'];
 		
 		this.word = this.words[Math.floor(Math.random() * this.words.length)];
-		
-		for (let i = 0; i < word.length; i++){
-			this.wordArray.push(new Letter(word[i]));
-		}
-			this.logWord();
+			
 
 		this.logWord = function (){
 		 console.log(('_').repeat(this.word.length));
 		};
 
-		this.check = function (guessedLetter) {
+		this.checkGuess = function (guessedLetter) {
 
 			var correctGuesses = 0;
-			var lettersRemaining = this.wordArray.length;	
+			var lettersRemaining = this.word.length;	
 
-			this.wordArray.forEach(function (letter) {
+			this.word.forEach(function (letter) {
 				correctGuesses += letter.check(guessedLetter);
 				lettersRemaining -= letter.revealed;
 			});
@@ -43,13 +37,16 @@ module.exports = function Word () {
 
 		}
 
-		this.showWord = function {
-			let log = '',
-			this.wordArray.forEach(function (letter) {
+		this.showWord = function() {
+			let log = '';
+			
+			this.word.forEach(function (letter) {
 				log += letter.character;
 			});
 			console.log(`The word was ${log}.`);
 		}
+
+		
 
 };
 
