@@ -1,36 +1,57 @@
 
-module.exports = function Word (complete, words, word) {
+const Letter = require('./letter.js');
+module.exports = function Word () {
 		
 		this.complete = false;
+
+		this.wordArray = [];
 		
 		this.words = ['Hemingway', 'Fitzgerald', 'Steinbeck', 'Kerouac'];
 		
 		this.word = this.words[Math.floor(Math.random() * this.words.length)];
 		
+		for (let i = 0; i < word.length; i++){
+			this.wordArray.push(new Letter(word[i]));
+		}
+			this.logWord();
+
 		this.logWord = function (){
 		 console.log(('_').repeat(this.word.length));
 		};
 
-		this.correctGuess = function (letter) {
-			for (var i = 0; i < this.word.length; i++) {
-				if (this.word[i] == letter) {
-					var word = this.word.split('');
-					word[i] = letter;
-					console.log(this.word.join(''));
-			// fill the empty spaces with the correct letter/s
-				}
-			}
+		this.check = function (guessedLetter) {
 
-			if (this.word.indexOf('_') < 0 ) {
+			var correctGuesses = 0;
+			var lettersRemaining = this.wordArray.length;	
+
+			this.wordArray.forEach(function (letter) {
+				correctGuesses += letter.check(guessedLetter);
+				lettersRemaining -= letter.revealed;
+			});
+
+			this.logWord();
+
+			if (lettersRemaining <= 0) {
 				this.complete = true;
-				console.log('You win!');
 			}
 
-		};
+			if (correctGuesses > 0) {
+				return true
+			}
 
-	
+				return false;
 
-	};
+		}
+
+		this.showWord = function {
+			let log = '',
+			this.wordArray.forEach(function (letter) {
+				log += letter.character;
+			});
+			console.log(`The word was ${log}.`);
+		}
+
+};
 
 
 
