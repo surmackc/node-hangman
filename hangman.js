@@ -6,11 +6,16 @@ let currentWord;
 var guessedLetters;
 var guesses;
 
+
+
 function startGame() {
 	guesses = 10;
-	currentWord = new Word(this.word);
+	currentWord = new Word();
+	console.log(console.log(('_').repeat(currentWord.word.length)));
 	takeInput();
+	
 }
+
 
 
 function takeInput() {
@@ -43,7 +48,7 @@ function takeInput() {
 };
 
 startGame();
-logWord();
+
 
 
 
