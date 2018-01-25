@@ -11,7 +11,7 @@ var guesses;
 function startGame() {
 	guesses = 10;
 	currentWord = new Word();
-	console.log(console.log(('_').repeat(currentWord.word.length)));
+	currentWord.logWord();
 	takeInput();
 	
 }

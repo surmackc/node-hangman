@@ -9,7 +9,7 @@ module.exports = function Word () {
 		this.word = this.words[Math.floor(Math.random() * this.words.length)];
 			
 
-		this.logWord = function (){
+		this.logWord = function (word){
 		 console.log(('_').repeat(this.word.length));
 		};
 
@@ -46,7 +46,7 @@ module.exports = function Word () {
 			console.log(`The word was ${log}.`);
 		}
 
-		
+
 
 };
 
