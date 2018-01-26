@@ -1,12 +1,12 @@
-module.exports = function Letter () {
+module.exports = function Letter (character) {
         
         this.character = character;
         this.revealed = false
         this.displayLetter = '_';
 
 
-
-        this.checkGuess = function(guessedLetter) {
+        // function which checks if the guessed letter is contained in our word
+        this.checkLetter = (guessedLetter) => {
           if (!this.revealed) {
             if (this.character === guessedLetter) {
               this.revealed = true;
