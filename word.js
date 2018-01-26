@@ -4,7 +4,7 @@ module.exports = function Word () {
 
 		this.complete = false;
 		
-		this.words = ['hemingway', 'fitzgerald', 'steinbeck', 'kerouac'];
+		this.words = ['hemingway', 'fitzgerald', 'steinbeck', 'kerouac', 'rowling', 'king', 'twain', 'austen', 'woolf', 'orwell', 'vonnegut', 'dickens', 'tolkien', 'thoreau'];
 		
 		this.word = this.words[Math.floor(Math.random() * this.words.length)];
 
